@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<jnlp spec="1.6+">
+	<information>
+		<title>Morena 7</title>
+		<vendor>Gnome spol. s r.o.</vendor>
+		<description>Morena 7 - Image Acquisition Library</description>
+		<offline-allowed />
+	</information>
+
+	<security>
+		<all-permissions />
+	</security>
+
+	<update check="background" policy="always" />
+
+	<resources>
+		<j2se version="1.6+" />
+		<property name="jnlp.versionEnabled" value="false" />
+		<jar href="morena7.jar" main="true"/>
+		<jar href="morena_license.jar"/>
+		<jar href="morena7_osx.jar"/>
+		<jar href="morena7_win.jar"/>
+		
+	</resources>
+
+	<component-desc />
+	
+</jnlp>

@@ -1,0 +1,126 @@
+/*-
+ * #%L
+ * Mathematical morphology library and plugins for ImageJ/Fiji.
+ * %%
+ * Copyright (C) 2014 - 2017 INRA.
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-3.0.html>.
+ * #L%
+ */
+package inra.ijpb.plugins;
+
+
+import ij.IJ;
+import ij.ImagePlus;
+import ij.measure.Calibration;
+import ij.measure.ResultsTable;
+import ij.plugin.filter.PlugInFilter;
+import ij.process.ImageProcessor;
+import inra.ijpb.label.LabelImages;
+import inra.ijpb.measure.GeometricMeasures2D;
+
+public class InertiaEllipsePlugin implements PlugInFilter
+{
+    // ====================================================
+    // Global Constants
+    
+    
+    // ====================================================
+    // Class variables
+    
+   /**
+     * When this options is set to true, information messages are displayed on
+     * the console. 
+     */
+    public boolean debug  = false;
+    
+	ImagePlus imagePlus;
+	
+    
+    // ====================================================
+    // Calling functions 
+    
+	/* (non-Javadoc)
+	 * @see ij.plugin.filter.PlugInFilter#setup(java.lang.String, ij.ImagePlus)
+	 */
+	@Override
+	public int setup(String arg, ImagePlus imp) {
+		if (imp == null) {
+			IJ.noImage();
+			return DONE;
+		}
+		
+		this.imagePlus = imp;
+		return DOES_ALL | NO_CHANGES;
+	}
+
+	/* (non-Javadoc)
+     * @see ij.plugin.PlugIn#run(java.lang.String)
+     */
+	public void run(ImageProcessor ip)
+	{
+		// check if image is a label image
+		if (!LabelImages.isLabelImageType(imagePlus))
+		{
+			IJ.showMessage("Input image should be a label image");
+			return;
+		}
+        
+        // Execute the plugin
+        ResultsTable results = process(imagePlus);
+        
+		// create string for indexing results
+		String tableName = imagePlus.getShortTitle() + "-Ellipses"; 
+    
+		// show result
+		results.show(tableName);
+    }
+    
+    /**
+	 * Main body of the plugin.
+	 * 
+	 * @param imagePlus
+	 *            the image to analyze
+	 * @return the instance of ResultsTable containing ellipse parameters for
+	 *         each label
+	 */
+    public ResultsTable process(ImagePlus imagePlus) {
+        // Check validity of parameters
+        if (imagePlus==null) 
+            return null;
+
+        if (debug) {
+        	System.out.println("Compute Inertia ellipses on image '" 
+        			+ imagePlus.getTitle());
+        }
+        
+        ImageProcessor proc = imagePlus.getProcessor();
+        
+        // Extract spatial calibration
+        Calibration cal = imagePlus.getCalibration();
+        double[] resol = new double[]{1, 1};
+        if (cal.scaled()) {
+        	resol[0] = cal.pixelWidth;
+        	resol[1] = cal.pixelHeight;
+        }
+        //TODO: use spatial calibration of ImagePlus
+
+        ResultsTable results = GeometricMeasures2D.inertiaEllipse(proc);
+        
+		// return the created array
+		return results;
+    }
+
+}

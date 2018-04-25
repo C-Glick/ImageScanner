@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<jnlp spec="1.6+" codebase="../lib/" >
+	<information>
+		<title>MorenaStudio 7</title>
+		<vendor>Gnome spol. s r.o.</vendor>
+		<description>MorenaStudio 7</description>
+		<offline-allowed />
+	</information>
+
+	<security>
+		<all-permissions />
+	</security>
+
+	<update check="background" policy="always" />
+
+	<resources>
+		<j2se version="1.6+" />
+		<property name="jnlp.versionEnabled" value="false" />
+		<jar href="morena7_launcher.jar" main="true"/>
+		
+		<extension name="Morena 7" href="morena7_component.jnlp"/>
+	</resources>
+
+	<application-desc main-class="MorenaStudioLauncher">
+		<argument>false</argument>
+	</application-desc>
+	
+</jnlp>
