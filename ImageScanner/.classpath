@@ -2,19 +2,19 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/The Pheonix/workspace/ImageScanner/libraries/morena 7.1.31/lib/morena7.jar" sourcepath="C:/Users/The Pheonix/workspace/ImageScanner/libraries/morena 7.1.31/doc">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/The%20Pheonix/workspace/ImageScanner/libraries/morena%207.1.31/doc/api/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/The Pheonix/workspace/ImageScanner/libraries/morena 7.1.31/lib/morena7_win.jar" sourcepath="C:/Users/The Pheonix/workspace/ImageScanner/libraries/morena 7.1.31/doc">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/The%20Pheonix/workspace/ImageScanner/libraries/morena%207.1.31/doc/api/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/The Pheonix/workspace/ImageScanner/libraries/ImageJ/ij.jar">
+	<classpathentry kind="lib" path="libraries/ImageJ/ij.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="https://imagej.nih.gov/ij/developer/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libraries/morena 7.1.31/lib/morena7_win.jar" sourcepath="libraries/morena 7.1.31/lib/morena7_win.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/ImageScanner/libraries/morena%207.1.31/doc/api/allclasses-frame.html!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libraries/morena 7.1.31/lib/morena7.jar" sourcepath="libraries/morena 7.1.31/lib/morena7.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/ImageScanner/libraries/morena%207.1.31/doc/api/allclasses-frame.html!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
